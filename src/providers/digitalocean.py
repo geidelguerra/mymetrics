@@ -21,7 +21,7 @@ def get_droplet_by_name(api_key: str, name: str) -> dict | None:
 def get_droplet_metrics(api_key: str, host_id: int, metric: str, start: datetime, end: datetime) -> list:
   metrics_map = {
     'cpu': 'cpu',
-    'memory': 'memory_free',
+    'memory': 'memory_available',
     'storage': 'filesystem_free'
   }
 

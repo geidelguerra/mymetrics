@@ -30,11 +30,12 @@ def get_metrics(servers: str):
       ip = info['networks']['v4'][0]['ip_address']
       vcpus = info['vcpus']
       total_memory = info['memory']
-      free_memory = round(int(memory_metrics[-1][1]) / 1024 / 1024)
       total_storage = info['disk']
+      free_memory = round(int(memory_metrics[-1][1]) / 1024 / 1024)
+      available_memory_percentage = round((free_memory / total_memory) * 100)
       free_storage = round(int(storage_metrics[-1][1]) / 1024 / 1024 / 1024)
 
-      click.echo(f"Server {server} ({ip}) VCPUs: {vcpus}, Memory: {total_memory}MB ({free_memory}MB), Storage: {total_storage}G ({free_storage}G)")
+      click.echo(f"Server {server} ({ip}) VCPUs: {vcpus}, Memory: {total_memory}MB ({free_memory}MB, {available_memory_percentage}%), Storage: {total_storage}G ({free_storage}G)")
     except Exception as e:
       click.echo(f"Server {server}: Error {e}")
 
